@@ -11,6 +11,22 @@ db.movies.insertMany([
     ])
 
 
+//Obtener todos los documentos
+db.movies.find().pretty() 
 
+//Obtener documentos con writer igual a "Quentin Tarantino"
+db.movies.find({writer: "Quentin Tarantino"})
+
+//Obtener documentos con actors que incluyan a "Brad Pitt"
+db.movies.find({actors: "Brad Pitt"})
+
+//Obtener documentos con franchise igual a "The Hobbit"
+db.movies.find({franchise: "The Hobbit"})
+
+//Obtener todas las películas de los 90s
+db.movies.find({year: {$gte: 1990, $lte: 2000}})
+
+//Obtener todas las películas estrenadas entre el año 2000 y el 2010
+db.movies.find({year: {$gte: 200, $lte: 2010}})
 
 
