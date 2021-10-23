@@ -11,6 +11,8 @@ db.movies.insertMany([
     ])
 
 
+
+
 //Obtener todos los documentos
 db.movies.find().pretty() 
 
@@ -30,6 +32,8 @@ db.movies.find({year: {$gte: 1990, $lte: 2000}})
 db.movies.find({year: {$gte: 200, $lte: 2010}})
 
 
+
+
 //Agregar sinopsis a "The Hobbit: An Unexpected Journey"
 db.movies.updateOne({title: "The Hobbit: An Unexpected Journey"},{$set:{synopsis: "A reluctant Hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug"}})
 db.movies.find({title: "The Hobbit: An Unexpected Journey"})
@@ -41,3 +45,24 @@ db.movies.find({title: "The Hobbit: The Desolation of Smaug"})
 //Agregar un actor llamado "Samuel L.Jackson" a la película "Pulp Fiction"
 db.movies.update({title: "Pulp Fiction"},{$addToSet:{actors:"Samuel L.Jackson"}})
 db.movies.find({actors: "Samuel L.Jackson"})
+
+
+
+
+//Encontrar las películas que en el título contengan la palabra "Hobbit"
+db.movies.find({title:{$regex:"Hobbit"}})
+
+//Encontrar las películas que en la sinopsis contengan la palabra "Gandalf"
+db.movies.find({synopsis:{$regex:"Gandalf"}})
+
+//Encontrar las películas que en la sinopsis contengan la palabra "Bilbo" y no la palabra "Gandalf"
+db.movies.find({$and:[{synopsis:{$regex:"Bilbo"}},{synopsis:{$not:{$regex:"Gandalf"}}}]})
+
+//Encontrar las películas que en la sinopsis contengan la palabra "dwarves" ó "hobbit"
+db.movies.find({$or:[{synopsis:{$regex:"dwarves"}},{synopsis:{$regex:"hobbit"}}]})
+
+//Encontrar las películas que en la sinopsis contengan la palabra "gold" y "dragon"
+db.movies.find({$and:[{synopsis:{$regex:"gold"}},{synopsis:{$regex:"dragon"}}]})
+
+
+
