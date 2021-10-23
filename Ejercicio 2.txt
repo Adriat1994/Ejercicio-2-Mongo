@@ -30,3 +30,14 @@ db.movies.find({year: {$gte: 1990, $lte: 2000}})
 db.movies.find({year: {$gte: 200, $lte: 2010}})
 
 
+//Agregar sinopsis a "The Hobbit: An Unexpected Journey"
+db.movies.updateOne({title: "The Hobbit: An Unexpected Journey"},{$set:{synopsis: "A reluctant Hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug"}})
+db.movies.find({title: "The Hobbit: An Unexpected Journey"})
+
+//Agregar sinopsis a "The Hobbit: The Desolation of Smaug"
+db.movies.updateOne({title: "The Hobbit: The Desolation of Smaug"},{$set:{synopsis: "The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring"}})
+db.movies.find({title: "The Hobbit: The Desolation of Smaug"})
+
+//Agregar un actor llamado "Samuel L.Jackson" a la película "Pulp Fiction"
+db.movies.update({title: "Pulp Fiction"},{$addToSet:{actors:"Samuel L.Jackson"}})
+db.movies.find({actors: "Samuel L.Jackson"})
